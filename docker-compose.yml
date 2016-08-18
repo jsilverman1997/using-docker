@@ -1,8 +1,12 @@
-identidock:
-  build: .
-  ports:
-    - "5000:5000"
-  environment:
-    ENV: DEV
-  volumes:
-    - ./app:/app
+version: '2'
+services:
+  identidock:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      ENV: DEV
+    volumes:
+      - ./app:/app
+  dnmonster:
+    image: amouat/dnmonster
