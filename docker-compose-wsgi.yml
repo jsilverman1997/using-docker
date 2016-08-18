@@ -1,9 +1,13 @@
-identidock:
-  build: .
-  ports:
-    - "9090:9090"
-    - "9191:9191"
-  environment:
-    ENV: 
-  volumes:
-    - ./app:/app
+version: '2'
+services:
+  identidock:
+    build: .
+    ports:
+      - "9090:9090"
+      - "9191:9191"
+    environment:
+      ENV: 
+    volumes:
+      - ./app:/app
+  dnmonster:
+    image: amouat/dnmonster
