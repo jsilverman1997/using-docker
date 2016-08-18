@@ -10,3 +10,5 @@ services:
       - ./app:/app
   dnmonster:
     image: amouat/dnmonster
+  redis:
+    image: redis
