@@ -2,8 +2,6 @@ version: '2'
 services:
   proxy:
     image: identiproxy:1.0
-    links:
-      - identidock
     ports:
       - "80:80"
     environment:
@@ -18,12 +16,16 @@ services:
   redis:
     image: redis:3.2.3
   logspout:
-    image: amouat/logspout-logstash:1.0
+    image: logspout-logstash:master
+    environment:
+      LOGSPOUT_SLEEP_SECONDS: 25
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "8000:80"
     command: logstash://logstash:5000
+    depends_on:
+      - proxy
+      - identidock
+      - logstash
   logstash:
     image: logstash:2.3.4
     volumes:
